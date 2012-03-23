@@ -1,0 +1,113 @@
+################################################################################
+#
+# This is the silent install response file for installing maintenance packages
+# using the update installer.
+# 
+# A common use of an options file is to run the wizard in silent mode. This lets
+# the options file author specify wizard settings without having to run the
+# wizard in graphical or console mode. To use this options file for silent mode
+# execution, *uncomment* and modify the parameters defined within.
+#
+# Use the following command line when running the wizard from the update 
+# installer directory:
+# 
+#    update -options responsefiles/install.txt -silent
+#
+# Please enclose all values within a single pair of double quotes.
+#
+################################################################################
+
+################################################################################
+# 
+# File Permission Checking
+# 
+# The installer does not check that it has sufficient file permissions to 
+# perform the installation by default.
+# 
+# Uncomment the following option to notify the installer that it should
+# check that it has sufficient file permissions to perform the required 
+# install operation on each file to be installed.
+# 
+# This option is not applicable for Windows.
+# 
+# -OPT checkFilePermissions="true"
+# 
+################################################################################
+
+################################################################################
+#
+# This section describes how to apply a maintenance package using the full filename specifications to be installed. 
+# There are three ways you can specify installing a maintenance package.  They are the following:
+# (Use the examples below and edit where appropriate.)
+#
+# 1. Specify a single maintenance package full filename to be installed.
+# 
+#    For example:
+#    -W maintenance.package="C:\Program Files\IBM\WebSphere\AppServer\UpdateInstaller\maintenance\PQ20029.pak"
+#
+# 2. Specify a multiple maintenance package full filename to be installed. 
+#    -  Use a semicolon to separate the full filename specifications.
+#    -  Update Installer will install the latest applicable maintenance in the order listed. 
+#
+#    For example:  
+#    -W maintenance.package="C:\maintenance\PQ20029.pak;C:\maintenance\PK31008.pak;D:\6.1.0-WS-WAS-WinX32-FP0000001.pak" 
+#
+# 3. Specify a full folder name that contains the maintenance packages.
+#    Update Installer will install the latest applicable maintenance in the order listed in the folder.
+#
+#    For example:
+#    -W maintenance.package="D:\UpdateInstaller\maintenance"
+#
+# Notes: If no package is specified, maintenance packages from the default folder (such as, UpdateInstaller_HOME/maintenance )
+#        will be installed.
+#
+-W maintenance.package=/var/websphere/src/updates/70021/ihs7/maintenance
+
+
+################################################################################
+# 
+# Prerequisite Checking
+# 
+# The update installer checks the system for prerequisites by default.
+# 
+# Uncomment the following option to notify the installer to continue with
+# the update and log the warnings even though prerequisite checking
+# failed.
+# 
+#-OPT disableNonBlockingPrereqChecking="true"
+
+
+################################################################################
+#
+# AIX Non-root User Limitation
+#
+# The AIX user account running the Update Installer program also must be able to 
+# run the slibclean command; otherwise, a root user must run the slibclean command
+# before the Update Installer program runs. 
+#
+# Uncomment the following option to notify the installer that a root user has run
+# the slibclean command before the Update Installer program runs.
+#
+#-OPT rootUserHasRunSlibcleanCommandSuccessfully="true"
+
+
+################################################################################
+#
+# Used to input the product install location that will be updated.
+#
+#    For example:
+#    -W product.location="C:\Program Files\IBM\WebSphere\AppServer"
+#
+# Note: The product install location should always been specified, and it should
+# always be the full path.
+#
+-W product.location="/opt/websphere/ibmihs7"
+
+
+
+################################################################################
+#
+# Do not edit these values.
+#
+#
+-W update.type="install"

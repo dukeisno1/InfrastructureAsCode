@@ -1,0 +1,21 @@
+## Profile Settings
+-OPT silentInstallLicenseAcceptance="true"
+-OPT allowNonRootSilentInstall="true"
+-OPT disableOSPrereqChecking="true"
+-OPT disableNonBlockingPrereqChecking="true"
+-OPT installType="installNew"
+-OPT installLocation="/opt/websphere/appserver7/"
+-OPT profileType="custom"
+-OPT feature="noFeature"
+-OPT PROF_enableAdminSecurity="false"
+-OPT PROF_profilePath=/opt/websphere/appserver7/profiles/Appsrv/
+-OPT PROF_profileName=Appsrv
+-OPT PROF_isDefault="true"
+## Node, Host, and Cell Names
+-OPT PROF_hostName=srv2alias
+-OPT PROF_nodeName=appsrv02_node
+#-OPT PROF_cellName=was7_Cell
+## Custom Node Federation
+-OPT PROF_federateLater="false"
+-OPT PROF_dmgrHost="dmgrhost"
+-OPT PROF_dmgrPort="8879"

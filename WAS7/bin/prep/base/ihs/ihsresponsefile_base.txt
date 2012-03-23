@@ -1,0 +1,223 @@
+################################################################################
+#
+# A common use of an options file is to run the wizard in silent mode. This lets
+# the options file author specify wizard settings without having to run the
+# wizard in graphical or console mode. To use this options file for silent mode
+# execution, use the following command line arguments when running the wizard:
+#
+#   install -options "responsefile.txt" -silent
+#
+################################################################################
+# Note: Synchronous Silent Installs
+# ---------------------------------
+# On non-Windows operating systems, silent installs will execute in a synchronous process.
+# The process will not return until the silent install has completed.
+#
+# For the silent install to run synchronously on Windows, you must run the
+# executable in the following way:
+#
+#    START /WAIT  install.exe -options "response_local.txt" -silent
+#
+#
+################################################################################
+
+################################################################################
+#
+# TROUBLE SHOOTING TIP
+#
+# If no signs of an install are visible, reference the temporary log file (temporary_ihsv7_install.log)
+# in the user's temporary directory for signs of cause.
+#
+
+
+###################################################################################
+#
+# License Acceptance
+#
+# Valid Options : true   Accepts the license. Will install the product.
+#                 false  Declines the license. Install will not occur.
+#
+# If no install occurs, this will be logged to a temporary log file 
+# in the user's home's ihslogs directory. (<user home>/ihslogs/log.txt)
+#
+# By changing the silentInstallLicenseAcceptance.value in this response file to "true", you agree that you
+# have reviewed and agree to the terms of the IBM International Program License Agreement accompanying this
+# program, which is located at CD_ROOT\plugins\lafiles.  If you do not agree to these terms, do not change
+# the value or otherwise download, install, copy, access, or use the program and promptly return the
+# program and proof of entitlement to the party from whom you acquired it to obtain a refund of the amount you paid.
+#
+#
+
+-OPT silentInstallLicenseAcceptance="true"
+-OPT allowNonRootSilentInstall=true
+
+################################################################################
+# Operating System Prerequisite Checking
+#
+# If you want to disable operating system prerequisite checking, uncomment
+# the following line. This will notify the installer to continue with
+# the installation and log the warnings even though the prerequisite checking
+# has failed.
+#
+#-OPT disableOSPrereqChecking="true"
+
+# *******************************************
+#
+#
+# Please follow the comments to use the response file and
+# understand the various options.  You must carefully complete
+# or change the various values. If the values are not completed
+# properly, the install may be unsuccessful.
+#
+# IMPORTANT: ALL VALUES MUST BE ENCLOSED IN DOUBLE QUOTES ( "" ).
+#
+# *******************************************
+
+
+# *******************************************
+# IBM Http Server Install Location
+#
+# Please specify the destination directory for the IBM HTTP
+# Server installation.   The default setting is for AIX.
+# You will need to change this for other platforms.
+# For example,
+#
+# AIX Default Install Location:
+#
+#  -OPT installLocation="/usr/IBM/HTTPServer"
+#
+# HP-UX, Solaris or Linux Default Install Location:
+#
+#  -OPT installLocation="/opt/IBM/HTTPServer"
+#
+# Windows Default Install Location:
+#
+#  -OPT installLocation="C:\Program Files\IBM\HTTPServer"
+# *******************************************
+
+-OPT installLocation="/opt/websphere/ibmihs7"
+
+# *******************************************
+# Below are the features that you may choose to install.
+# Set the following values to "true" or "false," depending upon whether
+# you want to install the following features or not.
+#
+# NOTE: The default settings for features in this response file
+#       detail the defaults for a typical installation.
+# *******************************************
+
+
+# ********************************************************************
+# Set the values for the HTTP port and the HTTP Administration
+# port.  Their default values are "80" and "8008" respectively.
+# If these ports are already in use by IBM HTTP Server or another
+# application, then change the port numbers from their default values.
+# The default value for HTTP port is "8080" for non root users.
+# ********************************************************************
+#-OPT httpPort="8080"
+
+-OPT httpPort="80"
+-OPT adminPort="8008"
+
+
+# *******************************************
+# Begin Features for IHS admin from WebSphere
+#
+# This allows WebSphere Application Server's
+# Administration Console to administer the
+# IBM HTTP Server.
+# *******************************************
+
+# *****************************************************
+# Set this to "true" to create a user ID and password
+# to authenticate to the IBM HTTP administration server
+# using the WebSphere Application Server administrative
+# console.  The newly-created user ID and password is
+# encrypted and stored in the conf/admin.passwd file.
+# You can create additional user IDs after the
+# installation by using the bin/htpasswd utility.
+# *****************************************************
+
+-OPT createAdminAuth="false"
+
+# *****************************************************
+# If createAdminAuth is "true", use these
+# options to set the user ID and password
+# to be created.
+# *****************************************************
+
+#-OPT adminAuthUser="username"
+#-OPT adminAuthPassword="password"
+#-OPT adminAuthPasswordConfirm="password"
+
+# ********************************************************************
+# Set this to "true" to perform steps to setup IBM HTTP Administration 
+# Server on Linux and UNIX operating systems.  When set to "true", the 
+# installation grants a user ID write access to the necessary IBM HTTP 
+# Server and plug-in configuration files.  
+# ********************************************************************
+
+-OPT runSetupAdmin="true"
+
+# *****************************************************************************
+# Set createAdminUserGroup to "true" to create a user ID and group used 
+# to setup the IBM HTTP Administration Server on Linux and UNIX operating 
+# systems.  If the user ID or Group previously exists, set createAdminUserGroup 
+# to "false".
+# *****************************************************************************
+
+-OPT createAdminUserGroup=true
+
+# **********************************************************************
+# User ID and Group name used to setup IBM HTTP Administration Server on
+# Linux and UNIX operating systems.  
+# **********************************************************************
+
+-OPT setupAdminUser="wsadm"
+-OPT setupAdminGroup="wsadm"
+
+# *******************************************
+#
+# End Features for IHS admin from WebSphere
+# *******************************************
+
+#
+# Installation of the WebSphere Plugin for the IBM HTTP Server
+#
+
+-OPT installPlugin="true"
+
+
+
+# **********************************************************************************
+#
+# Web server Definition Name
+#
+# A web server definition allows for Web server administration through the WebSphere
+# admin console.
+#
+#  Note : No spaces are allowed in the Web server definition name.
+# **********************************************************************************
+
+-OPT webserverDefinition="ihsalias"
+
+
+
+# **********************************************************************************
+#
+# WebSphere Application Server Machine HostName
+#
+# Enter the hostname of the WebSphere Application Server machine.
+#
+#  Note : Hostname is required when installPlugin is set to true.  No spaces are 
+#         allowed in the Hostname definition.
+# **********************************************************************************
+
+-OPT washostname="ihsalias"
+
+
+# *******************************************
+# End features for WebSphere Plugin for the
+# IBM HTTP Server.
+# *******************************************
+

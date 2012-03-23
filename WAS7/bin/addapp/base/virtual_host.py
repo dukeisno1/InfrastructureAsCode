@@ -1,0 +1,6 @@
+print AdminConfig.listTemplates('VirtualHost')
+cell = AdminConfig.getid('/Cell:was7_Cell/')
+print AdminConfig.listTemplates('VirtualHost')
+newapp_VH1 = AdminConfig.listTemplates('VirtualHost', 'newapp_VH')
+AdminConfig.createUsingTemplate('VirtualHost', cell, [['name', 'newapp_VH']], newapp_VH1)
+AdminConfig.save()

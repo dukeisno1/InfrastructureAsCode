@@ -1,0 +1,21 @@
+# stop everything
+
+# confirm stop
+
+# check previous version
+
+# maybe update installer
+
+
+# apply fixpack
+
+#/opt/websphere/UpdateInstaller/./update.sh -silent -options /opt/websphere/src/updates/70021/responsefiles/fpinstall.app.txt
+
+/opt/websphere/UpdateInstaller/./update.sh -silent -options /opt/websphere/src/updates/70021/responsefiles/fpinstall.ihs.txt
+
+/opt/websphere/UpdateInstaller/./update.sh -silent -options /opt/websphere/src/updates/70021/responsefiles/fpinstall.plg.txt
+
+# verify update
+
+
+# start up
